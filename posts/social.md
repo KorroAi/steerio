@@ -4,7 +4,9 @@
 > `experiments/run_all.py`). On ne prétend PAS « révolutionner l'IA » — on
 > montre une lib propre + des résultats honnêtes, y compris négatifs. C'est ça
 > qui génère le vrai buzz technique.
-> URL repo : `https://github.com/KorroAi/steerio` (à confirmer après push)
+> ⚠️ URL repo : REMPLACER `<REPO_URL>` partout par l'URL réelle APRÈS le push
+> (le compte GitHub authentifié est KorroAi → probablement
+> `https://github.com/KorroAi/ia-instrument`).
 
 ---
 
@@ -36,7 +38,7 @@
 
 **13** — What this is NOT: a new method. It's a clean, reproducible implementation of RepE+CAA + an honest empirical study (negative results included). The paper and every JSON report are in the repo.
 
-**14** — Repo + paper + verification chain: github.com/KorroAi/steerio. If you reproduce steering experiments, the chat-mode and baseline findings alone are worth a look. Feedback welcome. 🙏
+**14** — Repo + paper + verification chain: <REPO_URL>. If you reproduce steering experiments, the chat-mode and baseline findings alone are worth a look. Feedback welcome. 🙏
 
 ---
 
@@ -66,7 +68,7 @@ Two methodological gotchas worth knowing before you reproduce steering work: ins
 
 Everything is reproducible: the paper, the scripts, and every JSON report are in the repo. I included the negative results on purpose — that's what makes the numbers trustworthy.
 
-github.com/KorroAi/steerio
+<REPO_URL>
 
 #LLM #AI #Interpretability #OpenSource #MachineLearning
 
@@ -100,6 +102,6 @@ Two findings I think matter most for anyone doing steering research:
 
 This is NOT a new method — it's a clean implementation + an honest empirical study including the failures. Paper, scripts, and all JSON evidence are in the repo.
 
-https://github.com/KorroAi/steerio
+https://<REPO_URL>
 
 Feedback very welcome, especially on the DeepSeek-reasoning-resists-steering result and the transfer negative.
