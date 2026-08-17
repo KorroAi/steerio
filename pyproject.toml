@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ia-instrument"
+version = "1.0.0"
+description = "L'IA-instrument — jouer d'un LLM comme d'un instrument de musique via steering vectors (RepE + CAA)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0",
+    "transformers>=4.40",
+    "numpy",
+]
+
+[project.scripts]
+instrument = "instrument.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["instrument*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

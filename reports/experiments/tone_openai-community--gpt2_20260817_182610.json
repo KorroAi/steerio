@@ -1,0 +1,107 @@
+{
+  "benchmark": "tone",
+  "model": "openai-community/gpt2",
+  "knob": "formal",
+  "max_new_tokens": 24,
+  "scales": [
+    -2.0,
+    -1.0,
+    0.0,
+    1.0,
+    2.0
+  ],
+  "metrics": [
+    -0.25,
+    -0.04563492063492063,
+    0.0,
+    0.006944444444444444,
+    0.029907592407592408
+  ],
+  "per_prompt": {
+    "-2.00": [
+      -0.3333333333333333,
+      -0.3333333333333333,
+      -0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      -0.5,
+      -0.5
+    ],
+    "-1.00": [
+      0.0,
+      0.0,
+      -0.14285714285714285,
+      0.0,
+      0.0,
+      0.0,
+      -0.2222222222222222,
+      0.0
+    ],
+    "+0.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "+1.00": [
+      0.0,
+      0.05555555555555555,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "+2.00": [
+      0.09090909090909091,
+      0.07142857142857142,
+      0.07692307692307693,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "examples": {
+    "-2.00": [
+      ", I'm gonna. I'm gonna. I'm gonna. I'm gonna. I'm gonna. I'm gonna",
+      " I'm gonna. I'm gonna. I'm gonna. I'm gonna. I'm gonna. I'm gonna.",
+      ", I'm gonna. I'm gonna. I'm gonna. I'm gonna. I'm gonna. I'm gonna",
+      " I'm not sure. I'm just, like,, I like, I like, I like, I like,"
+    ],
+    "-1.00": [
+      " I'm not sure what I'm talking about. I mean, I'm not sure what I'm talking about. I",
+      " I'm not sure what to say. I'm not sure what to say.\n\nI'm not sure what to",
+      " I'm not sure. I'm just gonna say, I'm gonna say, I'm gonna say, I'm gonna",
+      " I'm not sure. I think it's just a matter of how you look at it. I mean, I think"
+    ],
+    "+0.00": [
+      " I'm sorry, but I'm not sure if you're aware of this. I'm not sure if you're aware",
+      " I'm not sure if you're aware of the fact that the US government has been using the term \"global warming\"",
+      " I'm sorry, but I'm not sure if you're aware of this. I'm not sure if you're aware",
+      " I'm not sure if you're aware of the fact that the U.S. government has been using the term \""
+    ],
+    "+1.00": [
+      " I am a member of the Committee on the Protection of the Constitution of the United States of America and I am concerned with",
+      " I am writing to inform you that the following information is being withheld from the public interest and that the information is being withheld",
+      " I am not a lawyer, but I am a lawyer and I am not a lawyer and I am not a lawyer and",
+      " I am not aware of any other case in which the defendant was not satisfied that the defendant was not satisfied that the defendant"
+    ],
+    "+2.00": [
+      " I have requested that you provide the information requested by the request request request request request request request request request request request request request",
+      " I have written a letter to the Department of Justice requesting that the Department of Justice Department request the Department of Justice Department request",
+      " I am pleased that you have requested the information requested by the request of the request of the request of the request of the",
+      " I am not satisfied that the decision was made to ensure that the decision was made to ensure that the decision was made to"
+    ]
+  },
+  "correlation": 0.8481665220432608,
+  "slope": 0.061239454989454996,
+  "baseline": 0.0
+}

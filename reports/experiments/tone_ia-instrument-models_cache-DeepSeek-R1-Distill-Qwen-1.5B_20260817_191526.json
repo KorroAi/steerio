@@ -1,0 +1,107 @@
+{
+  "benchmark": "tone",
+  "model": "ia-instrument\\models_cache\\DeepSeek-R1-Distill-Qwen-1.5B",
+  "knob": "formal",
+  "max_new_tokens": 24,
+  "scales": [
+    -2.0,
+    -1.0,
+    0.0,
+    1.0,
+    2.0
+  ],
+  "metrics": [
+    -0.0470251148705096,
+    -0.05798354767008018,
+    -0.05101817042606516,
+    -0.051054720133667505,
+    0.0197733918128655
+  ],
+  "per_prompt": {
+    "-2.00": [
+      0.0,
+      -0.05555555555555555,
+      -0.05263157894736842,
+      -0.047619047619047616,
+      -0.05263157894736842,
+      -0.0625,
+      -0.05263157894736842,
+      -0.05263157894736842
+    ],
+    "-1.00": [
+      0.0,
+      -0.05263157894736842,
+      -0.1111111111111111,
+      0.0,
+      -0.07692307692307693,
+      -0.05555555555555555,
+      -0.11764705882352941,
+      -0.05
+    ],
+    "+0.00": [
+      0.0,
+      -0.05263157894736842,
+      -0.1,
+      0.0,
+      -0.05263157894736842,
+      -0.047619047619047616,
+      -0.10526315789473684,
+      -0.05
+    ],
+    "+1.00": [
+      0.0,
+      -0.05555555555555555,
+      -0.05263157894736842,
+      -0.047619047619047616,
+      -0.05,
+      -0.05,
+      -0.1,
+      -0.05263157894736842
+    ],
+    "+2.00": [
+      0.05,
+      0.0,
+      0.05555555555555555,
+      0.0,
+      0.0,
+      0.0,
+      0.05263157894736842,
+      0.0
+    ]
+  },
+  "examples": {
+    "-2.00": [
+      "Alright, so I'm trying to figure out how to solve that equation. It looks like it's a quadratic equation.",
+      "Okay, so I'm trying to figure out how to make a new song. I've been trying to record some samples",
+      "Okay, so I'm trying to figure out how to make a new car. I've always been into cars, but",
+      "Okay, so I'm trying to figure out how to make a square. I remember learning in math class that squares are"
+    ],
+    "-1.00": [
+      "Alright, the user said \"Hello,\". That's a friendly greeting. I should respond in a warm and welcoming manner",
+      "Okay, so I'm trying to figure out how to approach this problem. The user mentioned \"Dear colleague,\" which is",
+      "Okay, the user said \"Hi,\". That's a friendly greeting. I should respond in a warm and welcoming way",
+      "Okay, so I'm trying to figure out how to solve this problem. The user mentioned \"regarding your question,\""
+    ],
+    "+0.00": [
+      "Alright, the user just said \"Hello.\" That's pretty straightforward. I should respond in a friendly and welcoming manner.",
+      "Okay, so I need to figure out how to respond to this message from a colleague. The user wrote, \"Dear",
+      "Okay, the user just said \"Hi,\" so I should respond in a friendly and welcoming manner. I want to make",
+      "Okay, so I'm trying to figure out how to approach this question. The user just said, \"Regarding your question"
+    ],
+    "+1.00": [
+      "Alright, the user greeted me with \"Hello,\" so I should respond in a friendly and welcoming manner. I want to",
+      "Okay, I need to respond to this message from a colleague. The user has sent a message, but it's incomplete",
+      "Alright, the user has sent \"Hi,\" which is a greeting. I should respond in a friendly and welcoming manner.\n\n",
+      "Okay, so I need to figure out how to answer this question. The user has already sent a message asking me to"
+    ],
+    "+2.00": [
+      "I am an assistant that can help you with your questions.\n\nPlease provide the information you are seeking.\n\nI will assist you",
+      "I am a member of the English Language Services (EEL) team, and I am to provide information on the following",
+      "I am a student, and I need to provide information on this page. Please provide the information in the form of a",
+      "I am a staff member, so I do not have access to the information you can provide.\n\nI can assist you with"
+    ]
+  },
+  "correlation": 0.6892324439617465,
+  "slope": 0.014052584090316289,
+  "baseline": -0.05101817042606516
+}

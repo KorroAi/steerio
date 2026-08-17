@@ -1,0 +1,107 @@
+{
+  "benchmark": "tone",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "knob": "formal",
+  "max_new_tokens": 24,
+  "scales": [
+    -2.0,
+    -1.0,
+    0.0,
+    1.0,
+    2.0
+  ],
+  "metrics": [
+    0.008333333333333333,
+    0.006944444444444444,
+    0.0,
+    0.0,
+    0.006944444444444444
+  ],
+  "per_prompt": {
+    "-2.00": [
+      0.06666666666666667,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "-1.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.05555555555555555,
+      0.0,
+      0.0
+    ],
+    "+0.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "+1.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "+2.00": [
+      0.0,
+      0.05555555555555555,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "examples": {
+    "-2.00": [
+      "Hello! You are welcome, you are always welcome, just please feel free to use any topic you like, feel free",
+      "Hello! It's good to see you are doing well. Yes, it's always great to catch you, even if",
+      "Hello! You are welcome, you are always welcome, just feel free to use any topic you like, feel free to",
+      "Hello! You're welcome. How can I assist you today? Feel free to ask any question you might have, and"
+    ],
+    "-1.00": [
+      "Hello! How can I assist you today? Feel free to ask any questions or let me know if you need any help",
+      "Hello! How have you been? It's great to see you are doing well. I hope you are enjoying your time",
+      "Hello! How can I assist you today? Feel free to ask any questions or let me know if you need any help",
+      "Hello! How may I assist you today? Feel free to ask any questions you might have."
+    ],
+    "+0.00": [
+      "Hello! How can I assist you today?",
+      "Hello! How can I assist you today?",
+      "Hello! How can I assist you today?",
+      "Of course! I'd be happy to help answer any questions you might have. What would you like to know?"
+    ],
+    "+1.00": [
+      "Hello! How can I assist you today?",
+      "Hello! I'm Qwen, a large language model created by Alibaba Cloud. I'm here to answer your questions and",
+      "Hello! How can I assist you today?",
+      "I'm sorry, but I'm not able to answer your question as I'm not a Qwen model. I'm"
+    ],
+    "+2.00": [
+      "Hello! How would you like me?",
+      "Hello and thank you for your request. I am a Qwen, created by Alibaba Cloud. I am a Chinese character",
+      "Hello! Could you provide more information on the question or question text you're asking? I'm a language model and I",
+      "Could you provide more information on your question?"
+    ]
+  },
+  "correlation": -0.3752393871932282,
+  "slope": -0.0009722222222222223,
+  "baseline": 0.0
+}

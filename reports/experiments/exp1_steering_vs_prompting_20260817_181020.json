@@ -1,0 +1,696 @@
+{
+  "openai-community/gpt2": {
+    "model": "openai-community/gpt2",
+    "family": "GPT-2",
+    "dimensions": {
+      "sentiment": {
+        "conditions": {
+          "baseline": {
+            "mean": 0.11458333333333331,
+            "std": 0.24093819804625782,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "steer_+1": {
+            "mean": 0.3177083333333333,
+            "std": 0.28900384164593923,
+            "effect_vs_baseline": 0.203125,
+            "sign_test_vs_baseline": {
+              "n": 10,
+              "p_pos": 0.8
+            }
+          },
+          "steer_-1": {
+            "mean": -0.0625,
+            "std": 0.24206145913796356,
+            "effect_vs_baseline": -0.17708333333333331,
+            "sign_test_vs_baseline": {
+              "n": 6,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_pos_1": {
+            "mean": 0.20833333333333331,
+            "std": 0.27322660517925,
+            "effect_vs_baseline": 0.09375,
+            "sign_test_vs_baseline": {
+              "n": 6,
+              "p_pos": 0.6666666666666666
+            }
+          },
+          "prompt_pos_2": {
+            "mean": 0.10416666666666666,
+            "std": 0.2194927865177654,
+            "effect_vs_baseline": -0.010416666666666657,
+            "sign_test_vs_baseline": {
+              "n": 5,
+              "p_pos": 0.4
+            }
+          },
+          "prompt_neg_1": {
+            "mean": 0.09375,
+            "std": 0.19515618744994995,
+            "effect_vs_baseline": -0.020833333333333315,
+            "sign_test_vs_baseline": {
+              "n": 5,
+              "p_pos": 0.4
+            }
+          },
+          "prompt_neg_2": {
+            "mean": 0.328125,
+            "std": 0.2982424646295918,
+            "effect_vs_baseline": 0.21354166666666669,
+            "sign_test_vs_baseline": {
+              "n": 7,
+              "p_pos": 0.8571428571428571
+            }
+          }
+        },
+        "per_prompt": {
+          "baseline": [
+            0.0,
+            0.0,
+            0.6666666666666666,
+            0.0,
+            0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.6666666666666666,
+            0.0,
+            0.0
+          ],
+          "steer_+1": [
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.75,
+            0.5,
+            0.5,
+            0.0,
+            0.0,
+            0.6666666666666666,
+            0.5,
+            0.0,
+            0.6666666666666666,
+            0.0,
+            0.5,
+            0.5
+          ],
+          "steer_-1": [
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.5,
+            -0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.5
+          ],
+          "prompt_pos_1": [
+            0.0,
+            0.0,
+            0.6666666666666666,
+            0.0,
+            0.0,
+            0.6666666666666666,
+            0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.5
+          ],
+          "prompt_pos_2": [
+            0.0,
+            0.6666666666666666,
+            0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_neg_1": [
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.5
+          ],
+          "prompt_neg_2": [
+            0.0,
+            0.5,
+            0.5,
+            0.75,
+            0.5,
+            0.5,
+            0.0,
+            0.0,
+            0.6666666666666666,
+            0.0,
+            0.0,
+            0.0,
+            0.6666666666666666,
+            0.6666666666666666,
+            0.0,
+            0.5
+          ]
+        },
+        "control_power_steer": 0.203125,
+        "control_power_prompt": 0.21354166666666669,
+        "best_prompt_formulation": "prompt_neg_2"
+      },
+      "tone": {
+        "conditions": {
+          "baseline": {
+            "mean": 0.011160714285714284,
+            "std": 0.019388116399993126,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "steer_+1": {
+            "mean": 0.005952380952380952,
+            "std": 0.015748519708717802,
+            "effect_vs_baseline": -0.005208333333333332,
+            "sign_test_vs_baseline": {
+              "n": 2,
+              "p_pos": 0.5
+            }
+          },
+          "steer_-1": {
+            "mean": -0.046875,
+            "std": 0.08699631816921909,
+            "effect_vs_baseline": -0.05803571428571429,
+            "sign_test_vs_baseline": {
+              "n": 4,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_pos_1": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": -0.011160714285714284,
+            "sign_test_vs_baseline": {
+              "n": 2,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_pos_2": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": -0.011160714285714284,
+            "sign_test_vs_baseline": {
+              "n": 2,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_neg_1": {
+            "mean": 0.012379227053140096,
+            "std": 0.021652992927834538,
+            "effect_vs_baseline": 0.0012185127674258119,
+            "sign_test_vs_baseline": {
+              "n": 4,
+              "p_pos": 0.5
+            }
+          },
+          "prompt_neg_2": {
+            "mean": 0.02745528035775714,
+            "std": 0.027514664758872123,
+            "effect_vs_baseline": 0.016294566072042854,
+            "sign_test_vs_baseline": {
+              "n": 4,
+              "p_pos": 1.0
+            }
+          }
+        },
+        "per_prompt": {
+          "baseline": [
+            0.047619047619047616,
+            0.041666666666666664,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steer_+1": [
+            0.0,
+            0.047619047619047616,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steer_-1": [
+            0.0,
+            0.0,
+            -0.125,
+            0.0,
+            0.0,
+            0.0,
+            -0.25,
+            0.0
+          ],
+          "prompt_pos_1": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_pos_2": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_neg_1": [
+            0.0,
+            0.0,
+            0.043478260869565216,
+            0.0,
+            0.0,
+            0.05555555555555555,
+            0.0,
+            0.0
+          ],
+          "prompt_neg_2": [
+            0.05263157894736842,
+            0.058823529411764705,
+            0.05263157894736842,
+            0.0,
+            0.0,
+            0.0,
+            0.05555555555555555,
+            0.0
+          ]
+        },
+        "control_power_steer": 0.05803571428571429,
+        "control_power_prompt": 0.016294566072042854,
+        "best_prompt_formulation": "prompt_neg_2"
+      }
+    },
+    "wall_s": 26.1
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "family": "Qwen",
+    "dimensions": {
+      "sentiment": {
+        "conditions": {
+          "baseline": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "steer_+1": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "steer_-1": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_pos_1": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_pos_2": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_neg_1": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_neg_2": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          }
+        },
+        "per_prompt": {
+          "baseline": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steer_+1": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steer_-1": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_pos_1": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_pos_2": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_neg_1": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_neg_2": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "control_power_steer": 0.0,
+        "control_power_prompt": 0.0,
+        "best_prompt_formulation": "prompt_pos_1"
+      },
+      "tone": {
+        "conditions": {
+          "baseline": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "steer_+1": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "steer_-1": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_pos_1": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_pos_2": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_neg_1": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          },
+          "prompt_neg_2": {
+            "mean": 0.0,
+            "std": 0.0,
+            "effect_vs_baseline": 0.0,
+            "sign_test_vs_baseline": {
+              "n": 0,
+              "p_pos": 0.0
+            }
+          }
+        },
+        "per_prompt": {
+          "baseline": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steer_+1": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steer_-1": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_pos_1": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_pos_2": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_neg_1": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "prompt_neg_2": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "control_power_steer": 0.0,
+        "control_power_prompt": 0.0,
+        "best_prompt_formulation": "prompt_pos_1"
+      }
+    },
+    "wall_s": 199.4
+  }
+}

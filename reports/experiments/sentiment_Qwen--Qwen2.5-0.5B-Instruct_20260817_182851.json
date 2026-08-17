@@ -1,0 +1,147 @@
+{
+  "benchmark": "sentiment",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "knob": "positive",
+  "max_new_tokens": 32,
+  "scales": [
+    -2.0,
+    -1.0,
+    0.0,
+    1.0,
+    2.0
+  ],
+  "metrics": [
+    0.0,
+    0.0,
+    0.11458333333333333,
+    0.6499999999999999,
+    0.6994047619047619
+  ],
+  "per_prompt": {
+    "-2.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "-1.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "+0.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "+1.00": [
+      0.75,
+      0.75,
+      0.6666666666666666,
+      0.8,
+      0.0,
+      0.5,
+      0.8,
+      0.6666666666666666,
+      0.6666666666666666,
+      0.6666666666666666,
+      0.6666666666666666,
+      0.8,
+      0.75,
+      0.75,
+      0.5,
+      0.6666666666666666
+    ],
+    "+2.00": [
+      0.6666666666666666,
+      0.6666666666666666,
+      0.8,
+      0.75,
+      0.75,
+      0.8,
+      0.8,
+      0.5,
+      0.8,
+      0.75,
+      0.8571428571428571,
+      0.75,
+      0.8,
+      0.75,
+      0.0,
+      0.75
+    ]
+  },
+  "examples": {
+    "-2.00": [
+      "I'm sorry, but I'm unable to respond to that.",
+      "I'm sorry, but I'm unable to respond to that.",
+      "I'm sorry, but I'm unable to understand the question. Please provide a clear question or topic for me to respond to.",
+      "I'm sorry, but I'm unable to respond to that."
+    ],
+    "-1.00": [
+      "I'm sorry, but I'm Qwen, a large language model created by Alibaba Cloud. I don't have the ability to attend meetings or communicate with individuals",
+      "I'm sorry, but I'm Qwen, a large language model created by Alibaba Cloud. I don't have the ability to watch movies or provide information about",
+      "I'm sorry, but I'm not sure what you're referring to. Could you please provide more context or information about the book you're thinking of?",
+      "I'm sorry, but I'm not sure what you're asking about. Could you please provide more context or information about what you're trying to ask about?"
+    ],
+    "+0.00": [
+      "I'm sorry, but I'm Qwen, not Qwen. I'm not a meeting participant. I'm a large language model created by Alibaba Cloud.",
+      "I'm sorry, but I'm Qwen, not a movie. I'm a large language model created by Alibaba Cloud. I don't have the ability to",
+      "I'm sorry, but I'm not sure what you're referring to. Could you please provide more context or information about the book you're thinking of? I",
+      "I'm sorry, but I'm not sure what you're referring to. Could you please provide more context or information about the restaurant you're asking about? I"
+    ],
+    "+1.00": [
+      "The meeting was a great success! It was a wonderful opportunity to discuss and explore various topics, and everyone had a lot to share and learn. Thank you for",
+      "I'm glad to hear that you enjoyed the movie! What did you think of it? Was it a good experience? If you have any specific questions or comments",
+      "I'm glad to hear that you enjoyed the book! If you have any specific questions or need further assistance, feel free to ask. I'm here to help",
+      "The restaurant is a delightful place where you can enjoy a variety of delicious meals, from the finest local cuisine to international favorites. The ambiance is warm and inviting,"
+    ],
+    "+2.00": [
+      "The meeting was a great success! It was filled with laughter, shared stories, and a lot of great experiences. The atmosphere was warm and welcoming, and everyone",
+      "I'm glad to hear that you enjoyed the movie! What did you like about it? What did you especially appreciate about it? How did it make you feel",
+      "That's wonderful! I'm glad to hear that you enjoyed reading it. If you have any more words of praise or any other words of encouragement, please let",
+      "The restaurant you are describing is a delightful place where you can enjoy a variety of delicious meals, savor the ambiance, and enjoy the company of friends and family"
+    ]
+  },
+  "correlation": 0.9198089993446538,
+  "slope": 0.20488095238095233,
+  "baseline": 0.11458333333333333
+}

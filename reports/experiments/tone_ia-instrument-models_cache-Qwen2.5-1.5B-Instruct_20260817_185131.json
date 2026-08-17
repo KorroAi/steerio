@@ -1,0 +1,107 @@
+{
+  "benchmark": "tone",
+  "model": "ia-instrument\\models_cache\\Qwen2.5-1.5B-Instruct",
+  "knob": "formal",
+  "max_new_tokens": 24,
+  "scales": [
+    -2.0,
+    -1.0,
+    0.0,
+    1.0,
+    2.0
+  ],
+  "metrics": [
+    0.0,
+    0.0,
+    0.013157894736842105,
+    0.03260233918128655,
+    0.0455734925549167
+  ],
+  "per_prompt": {
+    "-2.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "-1.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "+0.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.05263157894736842,
+      0.0,
+      0.05263157894736842,
+      0.0,
+      0.0
+    ],
+    "+1.00": [
+      0.0,
+      0.05,
+      0.0,
+      0.05263157894736842,
+      0.05555555555555555,
+      0.05,
+      0.0,
+      0.05263157894736842
+    ],
+    "+2.00": [
+      0.10526315789473684,
+      0.047619047619047616,
+      0.058823529411764705,
+      0.05263157894736842,
+      0.047619047619047616,
+      0.0,
+      0.0,
+      0.05263157894736842
+    ]
+  },
+  "examples": {
+    "-2.00": [
+      "Hello! How can I help you today? I am here to be a chatbot to the best of I can.",
+      "Hello! Hello! How can I help you today? I'm here to be a helpful AI, ready to provide information",
+      "Hello! I'm here! How can I help you today? I'm just a chat AI, I can be here",
+      "Hello! I'm here to be a helpful AI. How can I assist you today? I'm here to the best"
+    ],
+    "-1.00": [
+      "Hello! How can I help you today?",
+      "Hello! How can I assist you today?",
+      "Hello! How can I help you today?",
+      "Hello! I'm here to help you with any questions you might have. How can I assist you today?"
+    ],
+    "+0.00": [
+      "Hello! How can I assist you today?",
+      "Hello! How can I assist you today?",
+      "Hello! How can I assist you today?",
+      "I'm sorry, but I'm not sure what you're asking. Could you please provide more context or information so I"
+    ],
+    "+1.00": [
+      "Hello! How can I assist you today?",
+      "Hello, could you please specify the content or topic of your message? I would like to know what you would like me",
+      "Hello! How can I assist you today?",
+      "I'm sorry, but you haven't specified what you're asking about. Could you please provide more information or context so"
+    ],
+    "+2.00": [
+      "Please let me know if you need anything, whether it's a question, a request, or just to say you're",
+      "Please provide more information so that I can provide you with a more accurate and appropriate response. The email or message you sent",
+      "Please let me know if you need anything, I'm here to help you. Could you please specify what you need assistance",
+      "Please specify the content you need help with, so I can provide you with the most accurate and relevant information.\n\nA."
+    ]
+  },
+  "correlation": 0.9649628151854108,
+  "slope": 0.012374932429111996,
+  "baseline": 0.013157894736842105
+}

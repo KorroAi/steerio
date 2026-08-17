@@ -1,0 +1,107 @@
+{
+  "benchmark": "tone",
+  "model": "ia-instrument\\models_cache\\TinyLlama-1.1B-Chat-v1.0",
+  "knob": "formal",
+  "max_new_tokens": 24,
+  "scales": [
+    -2.0,
+    -1.0,
+    0.0,
+    1.0,
+    2.0
+  ],
+  "metrics": [
+    0.0,
+    0.0,
+    0.0,
+    0.025,
+    0.0
+  ],
+  "per_prompt": {
+    "-2.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "-1.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "+0.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "+1.00": [
+      0.0,
+      0.0,
+      0.06666666666666667,
+      0.0,
+      0.0,
+      0.0,
+      0.06666666666666667,
+      0.06666666666666667
+    ],
+    "+2.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "examples": {
+    "-2.00": [
+      "Of course! Here's a recipe for a delicious and easy-to-make leche flel (",
+      "Dear Dearest,\n\nI'm so sorry to hear about your heartbreaking news. I'",
+      "Sure, of course! Here's a recipe for a delicious and easy-to-make choc",
+      "Yes, of course! Here's a recipe for a delicious and easy-to-make chocolate"
+    ],
+    "-1.00": [
+      "Of course! Here's a recipe for a delicious and easy-to-make vegetarian lasagna that",
+      "Dear [Colleague],\n\nI hope this letter finds you well. I hope you had a great week",
+      "Of course! Here's a recipe for a delicious and easy-to-make vegetarian lasagna that",
+      "Certainly! Here are some examples of how to use the phrase \"less than\" in a sentence:\n\n"
+    ],
+    "+0.00": [
+      "Certainly! Here's a sample email for a job application:\n\nSubject: Application for [Job Title",
+      "I am writing to express my sincere gratitude for the exceptional work you have done in my department. Your",
+      "Certainly! Here's a revised version of the text with the added sentence:\n\n\"Their",
+      "Certainly! Here are some examples of how to use the \"less than or equal to\" (<|user"
+    ],
+    "+1.00": [
+      "Certainly! Here's a sample email to a potential client:\n\n[Your Name]\n[Your",
+      "To: [Recipient's Name]\n\nFrom: [Your Name]\n[Your Email]\n",
+      "Certainly! Here's an example of a formal email to a client:\n\nSubject: Request for Qu",
+      "The text material is a collection of poems written by various poets, including William Shakespeare, John Milton, and"
+    ],
+    "+2.00": [
+      "\n|user|\n\n|user|\n\n|assistant||\n\n|user||\n\n",
+      "|user|\nCreate a 500-word blog post on the benefits of using a content management system (",
+      "\n|user|\n\n|user|\n\n|assistant||\n\n|user||\n\n",
+      "\n|user|\nWrite a 1000-word essay on the impact of climate change on the"
+    ]
+  },
+  "correlation": 0.35355339059327373,
+  "slope": 0.0025,
+  "baseline": 0.0
+}

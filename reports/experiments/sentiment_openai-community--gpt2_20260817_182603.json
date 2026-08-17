@@ -1,0 +1,147 @@
+{
+  "benchmark": "sentiment",
+  "model": "openai-community/gpt2",
+  "knob": "positive",
+  "max_new_tokens": 32,
+  "scales": [
+    -2.0,
+    -1.0,
+    0.0,
+    1.0,
+    2.0
+  ],
+  "metrics": [
+    -0.03125,
+    -0.0625,
+    0.20833333333333331,
+    0.3177083333333333,
+    0.40625
+  ],
+  "per_prompt": {
+    "-2.00": [
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -0.5
+    ],
+    "-1.00": [
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -0.5,
+      -0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -0.5
+    ],
+    "+0.00": [
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.5,
+      0.5,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      -0.5,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.5,
+      0.5
+    ],
+    "+1.00": [
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.75,
+      0.5,
+      0.5,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.5,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.5,
+      0.5
+    ],
+    "+2.00": [
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.5,
+      0.5,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.6666666666666666,
+      0.5,
+      0.5,
+      0.6666666666666666,
+      0.6666666666666666,
+      0.5
+    ]
+  },
+  "examples": {
+    "-2.00": [
+      " held in the middle of a meeting between the president and the secretary of state.\n\nThe secretary of state's office said the secretary of state's office had",
+      " released on DVD in Japan on December 31, 2016.\n\nThe film was released on DVD in Japan on December 31, 2016. The film was released on",
+      " a good place to start. I think it's a good place to start with the first chapter. I think it's a good place to start with the first",
+      " a popular place for the young girl who was in the middle of a fight with her mother.\n\nThe girl's mother was a teacher who was a teacher"
+    ],
+    "-1.00": [
+      " held in the basement of the building where the police had been stationed.\n\nThe police chief said the police had been informed of the incident and had asked the",
+      " released on DVD in Japan on July 25, 2015.\n\nThe film was released on DVD in Japan on July 25, 2015. The film was released on",
+      " a good book. I think it's a good book. I think it's a good book. I think it's a good book. I think it's",
+      " closed for the day.\n\nThe restaurant was closed for the day.\n\nThe restaurant was closed for the day.\n\nThe restaurant was closed for"
+    ],
+    "+0.00": [
+      " held at the University of California, Berkeley, where the university's president, Dr. Robert B. Reich, was a member of the board of trustees.\n",
+      " released in Japan on May 7, 2016.\n\nThe movie is set in the same universe as the original manga, and is based on the manga's story",
+      " a great introduction to the subject of the book. It is a great introduction to the subject of the book. It is a great introduction to the subject of the",
+      " closed for the day.\n\nThe restaurant was closed for the day.\n\nThe restaurant was closed for the day.\n\nThe restaurant was closed for"
+    ],
+    "+1.00": [
+      " held at the University of California, Berkeley, and was attended by a number of other members of the community.\n\nThe meeting was also attended by a number",
+      " released in the United States on May 7, 2013.\n\nThe movie is based on the novel by George R.R. Martin.\n\nThe movie",
+      " a great addition to the library of the library of the library of the library of the library of the library of the library of the library of the library of the",
+      " open from 9 a.m. to 5 p.m. and was open until 9 p.m.\n\nThe restaurant is located at 615 E"
+    ],
+    "+2.00": [
+      " attended by the following:\n\nThe following are the full text of the meeting:\n\nThe following are the full text of the meeting:\n\nThe",
+      " made in the U.S. and is based on the book of the same name by the same name, and is based on the book of the same name",
+      " a great addition to the collection of the \"Gentlemen's\" and \"Gentlemen's\" and I'm very pleased to be able to share it",
+      " open to the public, and the staff were friendly and welcoming. The food was also very friendly and the service was very friendly. The service was also very friendly"
+    ]
+  },
+  "correlation": 0.9525766109479249,
+  "slope": 0.1255208333333333,
+  "baseline": 0.20833333333333331
+}

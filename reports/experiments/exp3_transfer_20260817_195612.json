@@ -1,0 +1,48 @@
+[
+  {
+    "design": "A_matched_hidden",
+    "source": "Qwen/Qwen2.5-1.5B-Instruct",
+    "target": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+    "note": "même architecture (Qwen), hidden 1536, 28 couches",
+    "source_layers": 28,
+    "source_hidden": 1536,
+    "source_layer": 16,
+    "source_build_s": 69.8,
+    "target_layers": 28,
+    "target_hidden": 1536,
+    "target_layer_ratio": 0.5925925925925926,
+    "native": {
+      "delta": 0.0,
+      "baseline": 0.0
+    },
+    "transferred": {
+      "delta": 0.0,
+      "baseline": 0.0
+    },
+    "transfer_coefficient": null,
+    "wall_s": 274.1
+  },
+  {
+    "design": "B_zero_pad_cross_family",
+    "source": "openai-community/gpt2",
+    "target": "Qwen/Qwen2.5-0.5B-Instruct",
+    "note": "hidden 768 -> 896, projection naïve zero-pad, couche proportionnelle",
+    "source_layers": 12,
+    "source_hidden": 768,
+    "source_layer": 7,
+    "source_build_s": 1.7,
+    "target_layers": 24,
+    "target_hidden": 896,
+    "target_layer_ratio": 0.6086956521739131,
+    "native": {
+      "delta": 0.5354166666666667,
+      "baseline": 0.11458333333333333
+    },
+    "transferred": {
+      "delta": -0.11458333333333333,
+      "baseline": 0.11458333333333333
+    },
+    "transfer_coefficient": -0.2140077821011673,
+    "wall_s": 118.6
+  }
+]

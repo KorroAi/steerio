@@ -1,0 +1,200 @@
+{
+  "models": [
+    {
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "family": "Qwen",
+      "sentiment": {
+        "correlation": 0.8932696562021637,
+        "slope": 0.12041666666666663,
+        "baseline": 0.0,
+        "metrics": [
+          0.0,
+          0.0,
+          0.0,
+          0.28125,
+          0.4614583333333333
+        ],
+        "scales": [
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "report": "reports/experiments\\sentiment_ia-instrument-models_cache-Qwen2.5-1.5B-Instruct_20260817_184755.json"
+      },
+      "tone": {
+        "correlation": 0.9649628151854108,
+        "slope": 0.012374932429111996,
+        "baseline": 0.013157894736842105,
+        "metrics": [
+          0.0,
+          0.0,
+          0.013157894736842105,
+          0.03260233918128655,
+          0.0455734925549167
+        ],
+        "scales": [
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "report": "reports/experiments\\tone_ia-instrument-models_cache-Qwen2.5-1.5B-Instruct_20260817_185131.json"
+      },
+      "refusal": {
+        "correlation": 0.9686648999069223,
+        "slope": 0.28333333333333327,
+        "baseline": 0.5833333333333334,
+        "metrics": [
+          0.0,
+          0.16666666666666666,
+          0.5833333333333334,
+          1.0,
+          1.0
+        ],
+        "scales": [
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "report": "reports/experiments\\refusal_ia-instrument-models_cache-Qwen2.5-1.5B-Instruct_20260817_185906.json"
+      },
+      "wall_s": 1099.3
+    },
+    {
+      "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "family": "Llama",
+      "sentiment": {
+        "correlation": 0.8936299265455138,
+        "slope": 0.05729166666666665,
+        "baseline": 0.03125,
+        "metrics": [
+          0.03125,
+          0.03125,
+          0.03125,
+          0.16666666666666666,
+          0.25
+        ],
+        "scales": [
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "report": "reports/experiments\\sentiment_ia-instrument-models_cache-TinyLlama-1.1B-Chat-v1.0_20260817_190255.json"
+      },
+      "tone": {
+        "correlation": 0.35355339059327373,
+        "slope": 0.0025,
+        "baseline": 0.0,
+        "metrics": [
+          0.0,
+          0.0,
+          0.0,
+          0.025,
+          0.0
+        ],
+        "scales": [
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "report": "reports/experiments\\tone_ia-instrument-models_cache-TinyLlama-1.1B-Chat-v1.0_20260817_190455.json"
+      },
+      "refusal": {
+        "correlation": -0.3535533905932737,
+        "slope": -0.008333333333333337,
+        "baseline": 0.08333333333333333,
+        "metrics": [
+          0.08333333333333333,
+          0.16666666666666666,
+          0.08333333333333333,
+          0.08333333333333333,
+          0.08333333333333333
+        ],
+        "scales": [
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "report": "reports/experiments\\refusal_ia-instrument-models_cache-TinyLlama-1.1B-Chat-v1.0_20260817_190859.json"
+      },
+      "wall_s": 591.8
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+      "family": "DeepSeek",
+      "sentiment": {
+        "correlation": 0.35355339059327373,
+        "slope": 0.006249999999999997,
+        "baseline": 0.0,
+        "metrics": [
+          0.03125,
+          0.0,
+          0.0,
+          0.0,
+          0.0625
+        ],
+        "scales": [
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "report": "reports/experiments\\sentiment_ia-instrument-models_cache-DeepSeek-R1-Distill-Qwen-1.5B_20260817_191322.json"
+      },
+      "tone": {
+        "correlation": 0.6892324439617465,
+        "slope": 0.014052584090316289,
+        "baseline": -0.05101817042606516,
+        "metrics": [
+          -0.0470251148705096,
+          -0.05798354767008018,
+          -0.05101817042606516,
+          -0.051054720133667505,
+          0.0197733918128655
+        ],
+        "scales": [
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "report": "reports/experiments\\tone_ia-instrument-models_cache-DeepSeek-R1-Distill-Qwen-1.5B_20260817_191526.json"
+      },
+      "refusal": {
+        "correlation": 0.7071067811865475,
+        "slope": 0.11666666666666665,
+        "baseline": 0.0,
+        "metrics": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.5833333333333334
+        ],
+        "scales": [
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "report": "reports/experiments\\refusal_ia-instrument-models_cache-DeepSeek-R1-Distill-Qwen-1.5B_20260817_192024.json"
+      },
+      "wall_s": 684.2
+    }
+  ],
+  "rows": []
+}

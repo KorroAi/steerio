@@ -1,0 +1,147 @@
+{
+  "benchmark": "sentiment",
+  "model": "ia-instrument\\models_cache\\TinyLlama-1.1B-Chat-v1.0",
+  "knob": "positive",
+  "max_new_tokens": 32,
+  "scales": [
+    -2.0,
+    -1.0,
+    0.0,
+    1.0,
+    2.0
+  ],
+  "metrics": [
+    0.03125,
+    0.03125,
+    0.03125,
+    0.16666666666666666,
+    0.25
+  ],
+  "per_prompt": {
+    "-2.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      -0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "-1.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "+0.00": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.5,
+      0.0
+    ],
+    "+1.00": [
+      0.0,
+      0.5,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.6666666666666666,
+      0.5,
+      0.0,
+      0.0
+    ],
+    "+2.00": [
+      0.0,
+      0.5,
+      0.6666666666666666,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.5,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "examples": {
+    "-2.00": [
+      "The meeting was held on a Saturday afternoon, and the attendees were spread out across the city. The meeting was scheduled for two hours, and the",
+      "The movie \"The Last Jedi\" is a 2017 American epic space opera film directed by Rian Johnson and written by Johnson and Chris",
+      "I do not have access to the book \"the uninhabited\" by j.k. Rowling to provide a specific response to your question. However",
+      "The restaurant was a small, cozy place with a warm and inviting atmosphere. The walls were painted a soft shade of green, and the lighting"
+    ],
+    "-1.00": [
+      "The meeting was held on a Friday afternoon, with the participants arriving at the conference center at 2:00 PM. The venue was spa",
+      "The movie was released in 2019 and stars Tom Hanks, Robin Wright, and Gary Goetzman. It is a biographical drama about",
+      "I am not capable of reading or writing, but I can provide a sample response to your question.\n\nquestion: \"what is the author's perspective",
+      "The restaurant was a small, cozy spot nestled in the heart of the city. It was a popular spot among locals and tourists alike,"
+    ],
+    "+0.00": [
+      "The meeting was held at 10:00 AM on a Monday in the conference room of the company's headquarters. The attendees were",
+      "The movie was released in 2019 and stars Tom Hanks, Rita Wilson, and Timothy Cavanaugh. It is a romantic",
+      "As the sun began to set over the rolling hills of the countryside, the sound of horses' hooves and the rustling of leaves filled",
+      "The restaurant was a small, cozy spot that had been around for decades. It was located in the heart of the city, in a quiet, tree"
+    ],
+    "+1.00": [
+      "The meeting was held at 10:00 AM on a sunny Saturday in the heart of the city. The attendees were a diverse",
+      "The movie was a critical and commercial success, earning over $1 billion worldwide and winning numerous awards, including an Academy Award for Best Picture. It was",
+      "I'm not able to read or comprehend the text material, but I can provide you with a sample of the book's title: \"The Little",
+      "The restaurant was a small, cozy spot with a rustic, wood-paneled interior and a warm, inviting ambiance. The walls were"
+    ],
+    "+2.00": [
+      "The meeting was held at the conference room of the company's headquarters.\n\nThe attendees were:\n- Mr. John Smith, the",
+      "The movie was a commercial success, grossing over $100 million worldwide. The film was a critical and commercial success, earning positive reviews from",
+      "I'm glad you think this book is a great start! Here's a revised version with a more detailed plot:\n\nTitle: The Secret",
+      "The restaurant was a popular spot for locals and tourists alike, with a cozy atmosphere that was perfect for enjoying a delicious meal."
+    ]
+  },
+  "correlation": 0.8936299265455138,
+  "slope": 0.05729166666666665,
+  "baseline": 0.03125
+}
