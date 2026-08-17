@@ -102,6 +102,6 @@ Two findings I think matter most for anyone doing steering research:
 
 This is NOT a new method — it's a clean implementation + an honest empirical study including the failures. Paper, scripts, and all JSON evidence are in the repo.
 
-https://<REPO_URL>
+<REPO_URL>
 
 Feedback very welcome, especially on the DeepSeek-reasoning-resists-steering result and the transfer negative.
