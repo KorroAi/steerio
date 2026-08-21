@@ -3,7 +3,7 @@
 > Tone: 100% human, zero hype. Every number below is REAL (`experiments/run_all.py`,
 > regenerable). We are NOT claiming to "revolutionize AI" — we ship a clean, reproducible
 > steering-vector harness + an honest benchmark, including the parts that FAIL.
-> ⚠️ Replace `<REPO_URL>` with the real repo URL after the push.
+> ⚠️ Replace `https://github.com/KorroAi/steerio` with the real repo URL after the push.
 
 ---
 
@@ -59,7 +59,7 @@ representations tangible — `read("I love this day.", name="positive")` shows t
 contribution — a reproducible protocol + honest negatives, not a miracle.
 
 **14.** `pip install` the repo, load a tiny model, turn a knob, see the shift. Everything in
-this thread reproduces with `experiments/run_all.py`. Repo: `<REPO_URL>`.
+this thread reproduces with `experiments/run_all.py`. Repo: `https://github.com/KorroAi/steerio`.
 
 ---
 
@@ -80,4 +80,4 @@ this thread reproduces with `experiments/run_all.py`. Repo: `<REPO_URL>`.
 > reports the failures too. Sentiment steers monotonically on 4/5 families (corr .89–.95);
 > DeepSeek-reasoning barely moves (.35); and cross-model direction transfer **doesn't work**
 > (−.21, it counter-steers). It's an interpretability tool, not a production trick. Repo:
-> `<REPO_URL>`. Happy to be wrong — run `experiments/run_all.py` and check.
+> `https://github.com/KorroAi/steerio`. Happy to be wrong — run `experiments/run_all.py` and check.
