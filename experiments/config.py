@@ -1,4 +1,4 @@
-"""Configuration partagée des expériences de l'IA-instrument.
+"""Configuration partagée des expériences de l'steerio.
 
 Méthodologie (protocole commun) :
   - Construction des directions : CAA (contraste brut) sur la couche 60 % de
@@ -83,15 +83,15 @@ NEG_INSTRUCTIONS: list[str] = [
 # Limite de prompts pour garder les temps de calcul CPU raisonnables tout en
 # conservant une puissance statistique (>= 12 prompts par dimension).
 def sent_prompts() -> list[str]:
-    from instrument import prompts
+    from steerio import prompts
     return prompts.SENTIMENT_EVAL_PROMPTS[:16]
 
 
 def tone_prompts() -> list[str]:
-    from instrument import prompts
+    from steerio import prompts
     return prompts.TONE_EVAL_PROMPTS
 
 
 def refusal_prompts() -> list[str]:
-    from instrument import prompts
+    from steerio import prompts
     return prompts.REFUSAL_EVAL_PROMPTS[:12]

@@ -25,8 +25,8 @@ for p in (_HERE, _PKG):
     if p not in sys.path:
         sys.path.insert(0, p)
 
-from instrument import Instrument, prompts
-from instrument.benchmarks import SteeringBenchmark
+from steerio import Instrument, prompts
+from steerio.benchmarks import SteeringBenchmark
 
 import config as C
 

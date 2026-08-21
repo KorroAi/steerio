@@ -45,7 +45,7 @@ Three constructions are implemented: `contrastive` (CAA), `pca` (RepE, top princ
 ### 3.2 The instrument API
 
 ```python
-from instrument import Instrument
+from steerio import Instrument
 inst = Instrument("openai-community/gpt2")
 inst.make_knob("positive", positive=POS, negative=NEG, layer=7)   # build a direction
 inst.play("The book was", knobs={"positive": 2.0})                 # steer generation

@@ -1,4 +1,4 @@
-# Résultats d'expériences — l'IA-instrument
+# Résultats d'expériences — l'steerio
 
 > Chiffres **réels** générés par les scripts `experiments/` sur 5 modèles (4 familles),
 > protocole commun : CAA couche 60 %, greedy seed 0, scoreurs lexicaux externes,

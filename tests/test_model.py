@@ -1,8 +1,8 @@
 """Tests du wrapper modèle : découverte des couches, activations, génération, lecture."""
 import torch
 
-from instrument.model import discover_layers, set_seed
-from instrument import InstrumentModel
+from steerio.model import discover_layers, set_seed
+from steerio import InstrumentModel
 
 
 def test_discover_layers(tiny_model):

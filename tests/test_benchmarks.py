@@ -1,9 +1,9 @@
 """Tests des scorers et du harnais de benchmark (sur le modèle tiny)."""
 import os
 
-from instrument import prompts
-from instrument.benchmarks import SteeringBenchmark, sentiment_benchmark, tone_benchmark, refusal_benchmark
-from instrument.instrument import Instrument
+from steerio import prompts
+from steerio.benchmarks import SteeringBenchmark, sentiment_benchmark, tone_benchmark, refusal_benchmark
+from steerio.instrument import Instrument
 
 
 # ------------------------------------------------------------- scorers

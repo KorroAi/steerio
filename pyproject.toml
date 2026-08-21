@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ia-instrument"
+name = "steerio"
 version = "1.0.0"
-description = "L'IA-instrument — jouer d'un LLM comme d'un instrument de musique via steering vectors (RepE + CAA)"
+description = "steerio — play a language model like a musical instrument via steering vectors (RepE + CAA)"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -15,10 +15,10 @@ dependencies = [
 ]
 
 [project.scripts]
-instrument = "instrument.cli:main"
+steerio = "steerio.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["instrument*"]
+include = ["steerio*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

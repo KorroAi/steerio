@@ -1,15 +1,15 @@
-"""L'IA-instrument — jouer d'un LLM comme d'un instrument de musique.
+"""steerio — play a language model like a musical instrument.
 
-Contrôle par représentations internes / steering vectors
-(RepE : Representation Engineering — Zou et al. 2023 ;
- CAA : Contrastive Activation Addition — Arditi et al. 2024).
+Control a LLM through its internal representations / steering vectors
+(RepE: Representation Engineering — Zou et al. 2023 ;
+ CAA: Contrastive Activation Addition — Arditi et al. 2024).
 
-API publique :
-    Instrument        — l'instrument : knobs (directions de steering), play(), read()
-    InstrumentModel   — wrapper modèle : activations, génération, lecture RepE
-    SteeringVector    — une direction + couche + échelle
-    contrastive_direction, pca_direction, probe_direction — constructions de directions
-    benchmarks        — benchmarks réels de steerabilité
+Public API:
+    Instrument        — the instrument: knobs (steering directions), play(), read()
+    InstrumentModel   — model wrapper: activations, generation, RepE reading
+    SteeringVector    — a direction + layer + scale
+    contrastive_direction, pca_direction, probe_direction — direction builders
+    benchmarks        — real steerability benchmarks
 """
 
 from .instrument import Instrument

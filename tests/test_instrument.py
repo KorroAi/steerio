@@ -4,8 +4,8 @@ import os
 import pytest
 import torch
 
-from instrument import Instrument, InstrumentModel
-from instrument.vectors import SteeringVector
+from steerio import Instrument, InstrumentModel
+from steerio.vectors import SteeringVector
 
 TINY = "hf-internal-testing/tiny-random-gpt2"
 

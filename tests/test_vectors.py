@@ -1,7 +1,7 @@
 """Tests unitaires de la math des directions (pure, sans modèle)."""
 import torch
 
-from instrument.vectors import (
+from steerio.vectors import (
     SteeringVector,
     compose_directions,
     contrastive_direction,

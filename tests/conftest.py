@@ -5,7 +5,7 @@ os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
 import pytest
 
-from instrument import Instrument, InstrumentModel
+from steerio import Instrument, InstrumentModel
 
 TINY = "hf-internal-testing/tiny-random-gpt2"
 

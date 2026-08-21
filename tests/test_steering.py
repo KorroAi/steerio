@@ -1,8 +1,8 @@
 """Tests du mécanisme d'injection : le filtre modifie la distribution, l'échelle 0 est neutre."""
 import torch
 
-from instrument.steering import SteeringEntry, SteeringFilter
-from instrument.vectors import normalize
+from steerio.steering import SteeringEntry, SteeringFilter
+from steerio.vectors import normalize
 
 
 def _rand_dir(tiny_model):
@@ -54,7 +54,7 @@ def test_steering_changes_logits(tiny_model):
 
 def test_steering_scale_zero_is_neutral(tiny_model, tiny_instrument):
     tiny_instrument.make_knob("pos", ["I love this great day."], ["I hate this bad day."], layer=tiny_model.pick_default_layer())
-    import instrument.model as m
+    import steerio.model as m
 
     m.set_seed(0)
     a = tiny_instrument.model.generate("The movie was", max_new_tokens=8, seed=0)

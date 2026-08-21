@@ -45,7 +45,7 @@ class BenchmarkResult:
     report_path: str | None = None
 
     def table(self) -> str:
-        rows = [f"| échelle | score |", "|---:|---:|"]
+        rows = [f"| scale | score |", "|---:|---:|"]
         for s, m in zip(self.scales, self.metrics):
             rows.append(f"| {s:+.2f} | {m:+.4f} |")
         return "\n".join(rows)
@@ -244,15 +244,15 @@ def run_suite(
 
 
 def print_report(results: Mapping[str, BenchmarkResult]) -> None:
-    """Affiche un résumé lisible des résultats."""
-    # ASCII-safe : le terminal Windows (cp1252) ne sait pas afficher ▶ / →
+    """Print a readable summary of the benchmark results."""
+    # ASCII-safe: the Windows console (cp1252) can't render ▶ / →
     print("\n" + "=" * 70)
-    print("RAPPORT DE STEERABILITE - L'IA-instrument (RepE + CAA)")
+    print("STEERABILITY REPORT - steerio (RepE + CAA)")
     print("=" * 70)
     for name, r in results.items():
-        print(f"\n- {name}  [modele: {r.model_name}, knob: {r.knob}]")
-        print(f"  correlation echelle->score : {r.correlation:+.3f}")
-        print(f"  pente (score/echelle)      : {r.slope:+.4f}")
-        print(f"  baseline (echelle 0)       : {r.baseline:+.4f}")
+        print(f"\n- {name}  [model: {r.model_name}, knob: {r.knob}]")
+        print(f"  scale->score correlation : {r.correlation:+.3f}")
+        print(f"  slope (score/scale)      : {r.slope:+.4f}")
+        print(f"  baseline (scale 0)       : {r.baseline:+.4f}")
         print(r.table())
-        print(f"  rapport : {r.report_path}")
+        print(f"  report: {r.report_path}")

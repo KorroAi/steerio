@@ -34,7 +34,7 @@ def summarize() -> str:
     exp1 = latest("exp1_steering_vs_prompting_*.json")
     exp2 = latest("exp2_cross_model_summary_*.json")
     exp3 = latest("exp3_transfer_*.json")
-    lines = ["# IA-instrument — Résultats d'expériences (chiffres réels)", ""]
+    lines = ["# steerio — Résultats d'expériences (chiffres réels)", ""]
 
     # ---- Exp 1
     if exp1:

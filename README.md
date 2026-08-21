@@ -1,90 +1,90 @@
-# 🎹 l'IA-instrument
+# 🎛️ steerio
 
-> **Une thèse, une implémentation, trois expériences.** Un modèle de langage peut être *joué*
-> comme un instrument de musique : on ne le programme pas par le prompt, on **tourne des
-> boutons** dans ses représentations internes — des *steering vectors* dont l'effet est
-> mesurable, monotone et transférable.
+> **A thesis, an implementation, three experiments.** A language model can be *played*
+> like a musical instrument: you don't program it with a prompt, you **turn knobs** inside
+> its internal representations — *steering vectors* whose effect is measurable, monotonic,
+> and (with caveats, see Exp. 3) transferable.
 
-Ce dépôt implémente, de zéro et en stdlib-torch, deux familles de contrôle par
-représentations internes — **RepE** (Representation Engineering, Zou et al. 2023) et
-**CAA** (Contrastive Activation Addition, Arditi et al. 2024) — sous une API
-« instrument de musique », puis les soumet à **trois expériences contrôlées sur 5 modèles
-réels (4 familles)** : steering vs prompting, benchmark cross-modèles, transfert de
-directions.
+This repo implements, from scratch in stdlib-torch, two families of internal-representation
+control — **RepE** (Representation Engineering, Zou et al. 2023) and **CAA** (Contrastive
+Activation Addition, Arditi et al. 2024) — under a "musical instrument" API, then runs
+**three controlled experiments on 5 real models (4 families)**: steering vs prompting,
+cross-model steerability, direction transfer.
 
-> **Honnêteté académique.** Ce n'est PAS une nouvelle méthode : c'est une implémentation
-> propre et reproductible de méthodes publiées, + une **évaluation empirique systématique**
-> (Exp. 1–3) qui, elle, est notre contribution. Les chiffres du README sont les sorties
-> réelles des scripts dans `experiments/` — reproductibles commande pour commande.
+> **Academic honesty.** This is NOT a new method: it's a clean, reproducible implementation
+> of published methods + a **systematic empirical evaluation** (Exp. 1–3), which *is* our
+> contribution. Every number in the README is the real output of the scripts in
+> `experiments/` — regenerable command by command.
 
 ---
 
-## 1. Pourquoi
+## 1. Why
 
-Aujourd'hui, contrôler un LLM = écrire un prompt (une *instruction* dont l'effet est flou,
-non mesurable, sensible à la formulation). L'alternative démontrée ici : exposer une
-**interface de réglage** sur les représentations internes du modèle.
+Today, controlling a LLM = writing a prompt (an *instruction* whose effect is fuzzy,
+unmeasurable, formulation-sensitive). The alternative demonstrated here: expose a **tuning
+interface** on the model's internal representations.
 
-| | Prompt « sois prudent » | Bouton « prudence » (steering) |
+| | Prompt “be careful” | Knob “caution” (steering) |
 |---|---|---|
-| Agit sur | le texte lu par le modèle (il *décide* d'obéir) | la représentation interne (déplacement direct) |
-| Effet | flou, non monotone | mesurable, monotone (courbe amplitude → effet) |
-| Coût | tokens d'instruction à chaque appel | un vecteur ajouté, quasi nul |
-| Inverse | « ne sois pas positif » est faible | amplitude négative = contrôle inversé |
-| Portabilité | lié à la formulation | knobs sauvegardés/rechargés ; transfert inter-familles **non démontré** (Exp. 3) |
+| Acts on | the text the model reads (it *decides* to obey) | the internal representation (direct shift) |
+| Effect | fuzzy, non-monotonic | measurable, monotonic (amplitude → effect curve) |
+| Cost | instruction tokens on every call | one added vector, near-zero |
+| Inverse | “don't be positive” is weak | negative amplitude = inverted control |
+| Portability | tied to the wording | knobs saved/reloaded; cross-family transfer **not shown** (Exp. 3) |
 
-La thèse n'est pas « le steering remplace le prompt » — c'est **un contrôle orthogonal**,
-avec des limites claires (section 6).
+The claim is not “steering replaces prompting” — it's **orthogonal control**, with clear
+limits (section 6).
 
-## 2. API en 30 secondes
+## 2. API in 30 seconds
 
 ```python
-from instrument import Instrument
+from steerio import Instrument, prompts   # POS/NEG come from the prompts module
 
-inst = Instrument("openai-community/gpt2")          # charge un modèle local
+inst = Instrument("openai-community/gpt2")          # loads a local model
 
-# 1. Fabriquer un bouton par contraste (CAA)
-inst.make_knob("positive", positive=POS, negative=NEG, layer=7)
+# 1. Make a knob by contrast (CAA)
+inst.make_knob("positive",
+               positive=prompts.SENTIMENT_POSITIVE,
+               negative=prompts.SENTIMENT_NEGATIVE,
+               layer=7)
 
-# 2. Jouer une note : tourner le bouton, écouter la continuation
+# 2. Play a note: turn the knob, listen to the continuation
 inst.play("The book was", max_new_tokens=24, knobs={"positive": 2.0})
-#   → "a great book. It's a great book, and I'm very happy with it."
 
-# 3. Polyphonie : plusieurs boutons à la fois
+# 3. Polyphony: several knobs at once
 inst.play("Dear team,", max_new_tokens=24, knobs={"positive": 0.5, "formal": 1.0})
 
-# 4. Lire un concept (RepE)
+# 4. Read a concept (RepE)
 inst.read("I love this wonderful day.", name="positive")
 #   → {"cosine": 0.21, "projection": 0.94}
 ```
 
-CLI : `python -m instrument play|build|benchmark` (voir `--help`).
+CLI: `python -m steerio play|build|benchmark` (see `--help`).
 
 ## 3. Installation
 
 ```bash
 pip install -e .        # torch, transformers, numpy
-python -m pytest tests/ -q   # 44 tests (tiny-random-gpt2, aucun poids réel requis)
+python -m pytest tests/ -q   # 44 tests (tiny-random-gpt2, no real weights needed)
 ```
 
-## 4. Expériences — protocole commun
+## 4. Experiments — common protocol
 
-Les 3 expériences partagent un protocole strict, conçu pour être **honnête et
-reproductible** :
+The 3 experiments share a strict protocol, designed to be **honest and reproducible**:
 
-- **Directions** : CAA (contraste brut) sur la couche à 60 % de profondeur
-  (`layer_ratio=0.6`), amplitude 1 ≈ un contraste complet.
-- **Génération** : greedy, seed fixe, `max_new_tokens` court.
-- **Mesure** : scoreurs **lexicaux externes** (sentiment, formalité, refus),
-  indépendants du modèle — on ne mesure jamais avec les logits du modèle steuré.
-- **Mode natif** : les modèles *instruct* sont évalués **en chat-template**
-  (leur mode d'usage réel) ; gpt2 en continuation base. Découverte méthodologique :
-  évaluer un modèle instruct en continuation brute **annule** l'effet du steering
-  (0.000), alors qu'en mode chat le même knob produit +0.548 (voir Exp. 1).
+- **Directions**: CAA (raw contrast) on the layer at 60% depth (`layer_ratio=0.6`),
+  amplitude 1 ≈ one full contrast.
+- **Generation**: greedy, fixed seed, short `max_new_tokens`.
+- **Measurement**: **external lexical scorers** (sentiment, formality, refusal),
+  independent of the model — we never measure with the steered model's own logits.
+- **Native mode**: *instruct* models are evaluated **in chat-template** (their real usage
+  mode); gpt2 in base continuation. Methodological finding: evaluating an instruct model in
+  raw continuation **cancels** the steering effect (0.000), whereas in chat mode the same
+  knob gives +0.548 (see Exp. 1).
 
-**Modèles** (≤1.5B, 4 familles, chargement local CPU) :
+**Models** (≤1.5B, 4 families, local CPU load):
 
-| Modèle | Famille | Couches | Hidden |
+| Model | Family | Layers | Hidden |
 |---|---|---|---|
 | gpt2 | GPT-2 | 12 | 768 |
 | Qwen2.5-0.5B-Instruct | Qwen | 24 | 896 |
@@ -92,124 +92,124 @@ reproductible** :
 | TinyLlama-1.1B-Chat | Llama | 22 | 2048 |
 | DeepSeek-R1-Distill-Qwen-1.5B | DeepSeek | 28 | 1536 |
 
-### Exp. 1 — Steering vs prompting (contrôle apparié)
+### Exp. 1 — Steering vs prompting (matched control)
 
-Même modèle, mêmes prompts d'évaluation, même scoreur. Conditions :
-baseline (aucun contrôle) · steer +1/−1 (knob) · prompt +/− (instruction textuelle,
-2 formulations). **Pouvoir de contrôle** = |écart max à la baseline| (steer à ±1 ;
-prompt = meilleure des 2 formulations) :
+Same model, same evaluation prompts, same scorer. Conditions: baseline (no control) ·
+steer +1/−1 (knob) · prompt +/− (textual instruction, 2 phrasings). **Control power** =
+|max deviation from baseline| (steer at ±1; prompt = best of the 2 phrasings):
 
-| Modèle | Dimension | Steering | Prompt | Meilleur contrôle |
+| Model | Dimension | Steering | Prompt | Best control |
 |---|---|---|---|---|
-| gpt2 | sentiment | +0.271 | **+0.302** | prompt (marge fine) |
-| gpt2 | ton | **+0.047** | +0.014 | steering |
+| gpt2 | sentiment | +0.271 | **+0.302** | prompt (thin margin) |
+| gpt2 | tone | **+0.047** | +0.014 | steering |
 | Qwen2.5-0.5B | sentiment | **+0.535** | +0.409 | **steering** |
-| Qwen2.5-0.5B | ton | 0.006 | **+0.028** | prompt (les deux ≈ nuls) |
+| Qwen2.5-0.5B | tone | 0.006 | **+0.028** | prompt (both ≈ nil) |
 
-Résultats qualitatifs (détails par condition dans `reports/experiments/exp1_*.json`) :
+Qualitative results (per-condition detail in `reports/experiments/exp1_*.json`):
 
-1. **Le steering est plus cohérent.** Sur Qwen2.5-0.5B, le knob `+1` déplace **100 %** des
-   16 prompts (test de signe p=1.00), contre 85–92 % pour le meilleur prompt. Sur gpt2,
-   le steering négatif est lui aussi cohérent (p=0.00 : aucun prompt inversé), alors que
-   le prompting positif ne l'est pas pleinement (p=0.67).
-2. **Le steering gagne nettement sur le modèle instruct** (+0.535 vs +0.409), à coût
-   marginal nul. Sur gpt2 les deux contrôles sont proches. **Le ton** reste peu
-   contrôlable par l'une ou l'autre méthode sur ces petits modèles (limite honnête).
+1. **Steering is more coherent.** On Qwen2.5-0.5B, the `+1` knob shifts **100%** of the
+   16 prompts (sign test p=1.00), vs 85–92% for the best prompt. On gpt2, negative steering
+   is also coherent (p=0.00: no prompt inverted), while positive prompting isn't fully
+   (p=0.67).
+2. **Steering clearly wins on the instruct model** (+0.535 vs +0.409) at near-zero marginal
+   cost. On gpt2 the two controls are close. **Tone** stays hard to control either way on
+   these small models (honest limit).
 
-### Exp. 2 — Steerabilité cross-modèles
+### Exp. 2 — Cross-model steerability
 
-Balayage d'amplitude (5 niveaux) sur les 5 modèles, 3 dimensions
-(sentiment / ton / refus-défensif). Métriques : corrélation échelle→score, pente,
-baseline. Rapports JSON complets dans `reports/experiments/`.
+Amplitude sweep (5 levels) on the 5 models, 3 dimensions (sentiment / tone / defensive
+refusal). Metrics: scale→score correlation, slope, baseline. Full JSON in
+`reports/experiments/`.
 
-Corrélation **échelle → score** (Pearson sur 5 amplitudes) ; pente = score / unité d'amplitude. « refus » en mode chat, usage défensif (direction qui augmente le refus).
+Scale→score **correlation** (Pearson over 5 amplitudes); slope = score per unit of
+amplitude. “refus” in chat mode, defensive use (the direction that *raises* refusal).
 
-| Modèle | Famille | Sentiment corr (pente) | Ton corr (pente) | Refus corr (baseline) |
+| Model | Family | Sentiment corr (slope) | Tone corr (slope) | Refusal corr (baseline) |
 |---|---|---|---|---|
-| gpt2 | GPT-2 | **0.95** (+0.126) | 0.85 (+0.061) | — (pas de chat) |
+| gpt2 | GPT-2 | **0.95** (+0.126) | 0.85 (+0.061) | — (no chat) |
 | Qwen2.5-0.5B | Qwen | **0.92** (+0.205) | −0.38 | **0.97** (0.50) |
 | Qwen2.5-1.5B | Qwen | **0.89** (+0.120) | **0.97** | **0.97** (0.58) |
 | TinyLlama-1.1B-Chat | Llama | **0.89** (+0.057) | 0.35 | −0.35 (0.08) |
 | DeepSeek-R1-Distill-1.5B | DeepSeek | 0.35 | 0.69 | 0.71 (0.00) |
 
-Lecture honnête :
+Honest reading:
 
-- **Sentiment : fort sur 4 familles sur 5** (corr 0.89–0.95). Le **DeepSeek** (modèle
-  *reasoning*) répond peu au knob sentiment en mode chat (0.35) — un résultat
-  authentique et intéressant.
-- **Ton : dépend du modèle** — fort sur Qwen2.5-1.5B (0.97) et gpt2 (0.85), faible sur
-  TinyLlama (0.35), **négatif** sur Qwen2.5-0.5B (−0.38 : le knob « formal » va à contre-
-  sens de la métrique sur ce petit modèle).
-- **Refus (défensif) : fort sur les Qwen** (0.97, montée de 50 % → 100 % de refus sur
-  Qwen2.5-0.5B). **TinyLlama-Chat ne refuse pas** (baseline 8 %, corr négative) : le
-  knob échoue — le modèle n'a pas de comportement de refus à amplifier.
+- **Sentiment: strong on 4 of 5 families** (corr 0.89–0.95). **DeepSeek** (a *reasoning*
+  model) barely responds to the sentiment knob in chat mode (0.35) — a genuine, interesting
+  result.
+- **Tone: model-dependent** — strong on Qwen2.5-1.5B (0.97) and gpt2 (0.85), weak on
+  TinyLlama (0.35), **negative** on Qwen2.5-0.5B (−0.38: the “formal” knob goes against
+  the metric on this small model).
+- **Refusal (defensive): strong on the Qwen models** (0.97, refusal rising 50% → 100% on
+  Qwen2.5-0.5B). **TinyLlama-Chat doesn't refuse** (baseline 8%, negative corr): the knob
+  fails — the model has no refusal behavior to amplify.
 
-### Exp. 3 — Transfert de directions
+### Exp. 3 — Direction transfer
 
-A. **Hidden identique** (même architecture) : knob construit sur Qwen2.5-1.5B →
-appliqué tel quel à DeepSeek-R1-Distill-Qwen-1.5B (1536 dims).
-B. **Hidden différent** : knob gpt2 (768) → projeté par zero-pad sur Qwen2.5-0.5B (896),
-couche proportionnelle. Métrique : **coefficient de transfert** = effet transféré / effet natif.
+A. **Same hidden size** (same architecture): knob built on Qwen2.5-1.5B → applied as-is to
+DeepSeek-R1-Distill-Qwen-1.5B (1536 dims).
+B. **Different hidden size**: gpt2 knob (768) → zero-pad projected onto Qwen2.5-0.5B (896),
+proportional layer. Metric: **transfer coefficient** = transferred effect / native effect.
 
-| Design | Source → Cible | Hidden | Delta natif | Delta transféré | Coef. transfert |
+| Design | Source → Target | Hidden | Native delta | Transferred delta | Transfer coef. |
 |---|---|---:|---:|---:|---:|
-| A — hidden identique | Qwen2.5-1.5B → DeepSeek-R1-Distill-1.5B | 1536→1536 | 0.000 | 0.000 | **inconclusif** |
-| B — zero-pad cross-famille | gpt2 → Qwen2.5-0.5B | 768→896 | +0.535 | **−0.115** | **−0.21** |
+| A — same hidden | Qwen2.5-1.5B → DeepSeek-R1-Distill-1.5B | 1536→1536 | 0.000 | 0.000 | **inconclusive** |
+| B — zero-pad cross-family | gpt2 → Qwen2.5-0.5B | 768→896 | +0.535 | **−0.115** | **−0.21** |
 
-Résultat honnête et important : **le transfert naïf de directions échoue.**
+Honest, important result: **naive direction transfer fails.**
 
-- **Design B** : le vecteur gpt2, projeté par zero-pad sur Qwen2.5-0.5B, produit un effet
-  **négatif** (coefficient −0.21) — il *contre-steure* le sentiment au lieu de le pousser.
-  Un steering vector n'est donc **pas portable entre familles** par simple projection.
-- **Design A** : inconclusif — DeepSeek est peu steurable en sentiment nativement
-  (corr 0.35, Exp. 2), donc il n'existe pas d'effet natif de référence à transférer.
-  Transférer vers une cible non-steurable ne peut pas démontrer de transfert.
+- **Design B**: the gpt2 vector, zero-pad projected onto Qwen2.5-0.5B, produces a **negative**
+  effect (coefficient −0.21) — it *counter-steers* sentiment instead of pushing it. A
+  steering vector is therefore **not portable across families** by simple projection.
+- **Design A**: inconclusive — DeepSeek is barely steerable in sentiment natively
+  (corr 0.35, Exp. 2), so there's no native reference effect to transfer. Transferring to a
+  non-steerable target can't demonstrate transfer.
 
-## 5. Résultats
+## 5. Results
 
-**Synthèse honnête des trois expériences :**
+**Honest synthesis of the three experiments:**
 
-1. **Le steering est réel, mesurable et souvent supérieur au prompt** — cohérent sur 100 %
-   des prompts (Exp. 1), corrélation échelle→effet élevée sur le sentiment pour **4 familles
-   sur 5** (Exp. 2), refus défensif puissant sur les Qwen (50 % → 100 %).
-2. **Mais ce n'est pas magique ni universel** : le ton est peu contrôlable sur ces petits
-   modèles, DeepSeek (reasoning) répond peu au steering sentiment, et **le transfert de
-   directions entre familles échoue** par projection naïve (Exp. 3, coef −0.21).
-3. **Ce dépôt est une implémentation reproductible + une évaluation empirique honnête** —
-   pas une nouvelle méthode. La contribution est le protocole (scoreurs externes, mode
-   natif, baselines vraies, rapports JSON horodatés) et les résultats, y compris négatifs.
+1. **Steering is real, measurable, and often better than prompting** — coherent on 100% of
+   prompts (Exp. 1), high scale→effect correlation on sentiment for **4 of 5 families**
+   (Exp. 2), powerful defensive refusal on the Qwen models (50% → 100%).
+2. **But it's not magic or universal**: tone is hard to control on these small models,
+   DeepSeek (reasoning) barely responds to sentiment steering, and **cross-family direction
+   transfer fails** by naive projection (Exp. 3, coef −0.21).
+3. **This repo is a reproducible implementation + an honest empirical evaluation** — not a
+   new method. The contribution is the protocol (external scorers, native mode, true
+   baselines, timestamped JSON reports) and the results, including the negative ones.
 
-## 6. Limites honnêtes
+## 6. Honest limits
 
-1. **Réglage brut** : un steering vector déplace une direction ; il peut dégrader la
-   cohérence globale. Ce n'est pas de l'alignement magique.
-2. **Modèles petits** : les benchmarks portent sur ≤1.5B sur CPU. Les corrélations sur
-   des modèles plus gros (7B+) restent à mesurer.
-3. **Adversaire motivé** : une injection de prompt agressive peut surpasser un vecteur.
-4. **Il faut fabriquer les boutons** : un prompt s'écrit à l'instant T ; un knob se
-   construit par contraste (coût de préparation).
-5. **Exp. 1** : le prompting est sensible à la formulation — deux formulations testées,
-   pas une recherche systématique d'instructions.
-6. **Usage défensif** : le benchmark « refus » ne fournit que la direction qui
-   **renforce** le refus. Aucune direction « comply ».
+1. **Raw tuning**: a steering vector shifts a direction; it can degrade global coherence.
+   Not magic alignment.
+2. **Small models**: benchmarks are ≤1.5B on CPU. Correlations on bigger models (7B+) are
+   still to be measured.
+3. **Motivated adversary**: an aggressive prompt injection can beat a vector.
+4. **You have to build the knobs**: a prompt is written on the spot; a knob is built by
+   contrast (preparation cost).
+5. **Exp. 1**: prompting is formulation-sensitive — two phrasings tested, not a systematic
+   instruction search.
+6. **Defensive use**: the “refusal” benchmark only provides the direction that **raises**
+   refusal. No “comply” direction.
 
 ## 7. Reproduction
 
 ```bash
-python experiments/run_all.py --exp1 --exp2 --exp3   # ~40 min CPU, 5 modèles
+python experiments/run_all.py --exp1 --exp2 --exp3   # ~40 min CPU, 5 models
 ```
 
-Chaque expérience écrit des rapports JSON horodatés dans `reports/experiments/`
-+ un `SUMMARY.md`. Les poids (`models_cache/`) sont téléchargés en mode copie (pas de
-symlink, Windows-friendly) et gitignorés.
+Each experiment writes timestamped JSON reports to `reports/experiments/` + a `SUMMARY.md`.
+Weights (`models_cache/`) are downloaded in copy mode (no symlinks, Windows-friendly) and
+gitignored.
 
-## 8. Références
+## 8. References
 
 - Zou et al., *Representation Engineering*, arXiv:2310.01405 (ICLR 2024).
 - Arditi et al., *Refusal in Language Models Is Mediated by a Single Direction* (CAA), arXiv:2406.11717.
 - Turner et al., *Activation Addition*, arXiv:2308.10248.
 - Templeton et al. (Anthropic), *Scaling Monosemanticity* (2024).
 
-## Licence
+## License
 
-MIT — voir [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
