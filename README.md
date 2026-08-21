@@ -1,13 +1,13 @@
+<p align="center">
+  <img src="assets/steerio.png" alt="steerio" width="480"/>
+</p>
+
 # steerio
 
 > **A thesis, an implementation, three experiments.** A language model can be *played* like
 > a musical instrument. You don't program it with a prompt. You **turn knobs** inside its
 > internal representations, that is *steering vectors* whose effect is measurable, monotonic,
 > and, with caveats, transferable.
-
-<p align="center">
-  <img src="assets/steerio.png" alt="steerio" width="420"/>
-</p>
 
 This repo implements, from scratch in stdlib-torch, two families of internal representation
 control. **RepE** (Representation Engineering, Zou et al. 2023) and **CAA** (Contrastive
