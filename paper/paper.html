@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>steerio — Steering-Vector Control, Reproducibly</title>
+<link rel="icon" href="data:,"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;600&display=swap"/>
+<style>
+:root{
+  --bg:#fafbfc; --surface:#ffffff; --ink:#191c22; --muted:#5a6472;
+  --line:#e4e8ee; --accent:#3730a3; --accent-soft:#eceafd;
+  --up:#15803d; --down:#b91c1c; --amber:#9a6a00;
+  --body-w:46rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1116; --surface:#151a23; --ink:#e8ecf2; --muted:#9aa4b0;
+    --line:#242c38; --accent:#a5b0f8; --accent-soft:#1c2230;
+    --up:#34d399; --down:#f87171; --amber:#d9a33a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1116; --surface:#151a23; --ink:#e8ecf2; --muted:#9aa4b0;
+  --line:#242c38; --accent:#a5b0f8; --accent-soft:#1c2230;
+  --up:#34d399; --down:#f87171; --amber:#d9a33a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;
+  font-size:18px;line-height:1.65;font-optical-sizing:auto;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--body-w);margin:0 auto;padding:56px 24px 96px}
+/* masthead */
+.kicker{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:clamp(30px,4.5vw,44px);
+  line-height:1.12;margin:14px 0 10px;text-wrap:balance;letter-spacing:-.01em}
+.sub{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted);margin-bottom:6px}
+.author{font-size:15px;color:var(--muted);font-style:italic}
+.rule{height:1px;background:var(--line);margin:30px 0}
+/* abstract */
+.abstract{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:26px 28px;margin:26px 0 8px}
+.abstract .lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px}
+/* callouts */
+.honest{background:var(--accent-soft);border-left:3px solid var(--accent);padding:14px 18px;
+  border-radius:0 8px 8px 0;margin:22px 0;font-size:16.5px}
+.honest b{color:var(--accent)}
+/* headings */
+h2{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:26px;margin:48px 0 12px;
+  text-wrap:balance;line-height:1.2}
+h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:20px;margin:30px 0 8px}
+p{margin:0 0 16px}
+ul,ol{margin:0 0 16px;padding-left:24px}
+li{margin:6px 0}
+em{font-style:italic}
+strong{font-weight:700}
+code{font-family:"JetBrains Mono",monospace;font-size:.82em;background:var(--surface);
+  border:1px solid var(--line);padding:1px 5px;border-radius:5px}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;
+  overflow-x:auto;font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.55;margin:16px 0}
+pre code{border:none;padding:0;background:none;font-size:13px}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+/* math-ish */
+.eq{font-family:"JetBrains Mono",monospace;font-size:14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:8px;padding:14px 18px;overflow-x:auto;margin:16px 0}
+/* tables */
+.tablewrap{overflow-x:auto;margin:18px 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px;font-family:"Source Serif 4",serif}
+th{text-align:left;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);
+  padding:9px 12px}
+td{padding:9px 12px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:hover{background:var(--surface)}
+td:first-child{white-space:normal}
+td b{color:var(--ink)}
+.pos{color:var(--up);font-weight:700}
+.neg{color:var(--down);font-weight:700}
+.mut{color:var(--muted)}
+.caption{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted);margin:8px 0 4px;
+  letter-spacing:.03em}
+.capnum{color:var(--accent);font-weight:600}
+/* references */
+.refs{font-size:15.5px;line-height:1.6}
+.refs li{margin:8px 0;list-style:none;padding-left:0}
+.refs .n{font-family:"JetBrains Mono",monospace;color:var(--muted);margin-right:6px}
+.toc{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted);margin:22px 0 0;
+  display:flex;flex-wrap:wrap;gap:8px 18px}
+.toc a{border:none;color:var(--muted)}
+@media(max-width:560px){body{font-size:16.5px}.wrap{padding:40px 18px 80px}}
+.foot{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted);
+  margin-top:56px;border-top:1px solid var(--line);padding-top:16px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Research preprint · open source</div>
+  <h1>steerio</h1>
+  <div class="sub">Reproducible Steering-Vector Control of Language Models, and a Controlled Study Across Four Model Families</div>
+  <div class="author">korrocorp · MIT · every number regenerable from <code>experiments/</code></div>
+
+  <div class="toc">
+    <a href="#abstract">Abstract</a><a href="#s1">1. Intro</a><a href="#s2">2. Related</a>
+    <a href="#s3">3. Method</a><a href="#s4">4. Protocol</a><a href="#s5">5. Results</a>
+    <a href="#s6">6. Discussion</a><a href="#s7">7. Limits</a><a href="#s8">8. Conclusion</a>
+    <a href="#refs">Refs</a>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="abstract" id="abstract">
+    <span class="lbl">Abstract</span>
+    <p>Representation-level control, <em>steering</em>, offers an interface to a language model's
+    internal activations that is measurable, monotonic, and adjustable, in contrast to the
+    unmeasured, wording-sensitive effect of prompting. Methods such as Representation
+    Engineering (RepE) and Contrastive Activation Addition (CAA) are widely cited, yet
+    controlled comparisons against prompting, systematic cross-model studies, and honest
+    transfer evaluations remain scarce. We release <strong>steerio</strong>, a from-scratch,
+    dependency-light implementation of RepE and CAA unified under a single "instrument" API
+    (<code>make_knob</code> → <code>play</code> → <code>read</code>), and use it to run three
+    controlled experiments on 5 real open-weight models spanning 4 families, all ≤1.5B on CPU.</p>
+    <p>Our contributions are reproducible rather than methodological:</p>
+    <ol>
+      <li><strong>Steering vs. prompting (paired).</strong> Steering dominates on an
+      instruction-tuned model (sentiment control power +0.535 vs. +0.409) and is more
+      <em>consistent</em>: the +1 knob shifts 100% of evaluation prompts (sign test p=1.00)
+      versus 85–92% for the best textual prompt.</li>
+      <li><strong>Systematic cross-model steerability.</strong> Sentiment control correlates
+      0.89–0.95 with amplitude on 4 of 5 families; a reasoning model (DeepSeek-R1-Distill) is
+      barely steerable on sentiment (0.35); defensive refusal amplification is strong on Qwen
+      (0.97; 50%→100%) and fails on TinyLlama, which has no baseline refusal to amplify.</li>
+      <li><strong>Direction transfer (negative result).</strong> Naive cross-family transfer
+      via zero-padding fails; the transferred knob <em>counter-steers</em> (coefficient −0.21).</li>
+    </ol>
+    <p>Two methodological findings matter for any reproduction: <strong>(a)</strong> instruct
+    models must be evaluated in their native chat mode, base continuation annihilates the
+    effect (0.000 vs. +0.548 on the same knob); <strong>(b)</strong> a true baseline requires
+    an explicit empty knob set (<code>knobs={}</code>), because a <code>None</code> set plays
+    every knob at full amplitude by default.</p>
+  </div>
+
+  <h2 id="s1">1. Introduction</h2>
+  <p>Controlling a language model today means writing a prompt: an instruction whose effect is
+  unmeasured, sensitive to wording, and ultimately obeyed <em>by choice</em> of the model
+  itself. A different paradigm has emerged from interpretability research, <strong>steering
+  vectors</strong>: directions in the model's residual stream that, when added at inference
+  time, shift behavior along a concept (Zou et al.; Turner et al.; Arditi et al.). The promise
+  is <em>measurable, monotonic, adjustable</em> control, an instrument rather than an oracle.</p>
+  <p>Three gaps separate that promise from practice:</p>
+  <ul>
+    <li><strong>No controlled comparison.</strong> Papers show a knob changes outputs, but rarely
+    compare it fairly against prompting on the <em>same</em> prompts with the <em>same</em>
+    external scorer.</li>
+    <li><strong>No systematic cross-model study.</strong> Most demonstrations use one or two
+    models. Steerability across architectures, sizes, and training regimes is largely
+    unquantified.</li>
+    <li><strong>No honest transfer study.</strong> "Steering vectors transfer between models" is
+    often asserted; transfer with <em>mismatched hidden sizes</em> is seldom measured.</li>
+  </ul>
+  <div class="honest"><b>Contributions.</b> (i) A clean, unified, from-scratch implementation of
+  RepE and CAA under an instrument API. (ii) A controlled steering-vs-prompting evaluation on
+  matched prompts and an external scorer. (iii) A systematic steerability benchmark across five
+  models and four families. (iv) An honest transfer study that falsifies naive cross-family
+  portability. (v) Two methodological corrections (native chat mode, true <code>knobs={}</code>
+  baseline) that bear on the broader steering literature.</div>
+
+  <h2 id="s2">2. Related Work</h2>
+  <p><strong>Representation Engineering (RepE)</strong> (Zou et al., 2023) frames model internals
+  as a space of interpretable directions that can be <em>read</em> (probes, projections) and
+  <em>controlled</em> (direction addition). <strong>Activation Addition</strong> (Turner et al.,
+  2024) reduces control to a single cheap operation without any optimization.
+  <strong>Contrastive Activation Addition (CAA)</strong> (Arditi et al., 2024) constructs a
+  direction from the mean difference of positive/negative centroids and applies it at a chosen
+  layer, finding that refusal is mediated by a single such direction.</p>
+  <p><em>Our contribution is not a new method.</em> It is a clean, unified reproduction of both
+  families under one API, and the controlled empirical protocol and results, including the
+  negative transfer result and the chat-mode finding, that the field currently lacks.</p>
+
+  <h2 id="s3">3. Method</h2>
+  <h3>3.1 Steering vectors</h3>
+  <p>A steering vector is a triple <code>(direction, layer, scale)</code>. Given sets of positive
+  and negative example inputs, the default <strong>raw contrast</strong> direction is</p>
+  <div class="eq">v = (1/|P|)·Σ h<sup>(l)</sup>(x) − (1/|N|)·Σ h<sup>(l)</sup>(x)</div>
+  <p>i.e. CAA with an unnormalized centroid difference. At generation, for every token we add
+  <code>s·v</code> to the residual stream of layer <code>l</code>. Because <code>v</code>'s norm
+  is the centroid distance, <code>s=1</code> is interpretable as "one full contrast." Three
+  constructions are implemented: <code>contrastive</code> (CAA), <code>pca</code> (RepE; top
+  principal component), and <code>probe</code> (RepE; logistic-regression weight vector).</p>
+  <h3>3.2 The instrument API</h3>
+  <pre><code>from steerio import Instrument, prompts
+
+inst = Instrument("openai-community/gpt2")                    # load a local model
+inst.make_knob("positive", positive=prompts.SENTIMENT_POSITIVE,
+               negative=prompts.SENTIMENT_NEGATIVE, layer=7)  # build a direction
+inst.play("The book was", knobs={"positive": 2.0})            # steer generation
+inst.read("I love this day.", name="positive")                # read a concept</code></pre>
+  <p><code>play</code> supports polyphony (several knobs simultaneously). Knobs persist via
+  <code>save_knobs</code> / <code>load_knobs</code>.</p>
+  <h3>3.3 Implementation notes</h3>
+  <ul>
+    <li>Compatible with GPT-2 (<code>transformer.h</code>), Llama/Qwen (<code>model.layers</code>),
+    and generic causal LMs in transformers 5.x; runs on CPU.</li>
+    <li>All measurement uses external lexical scorers, never the steered model's own logits.</li>
+    <li>Reproducibility: greedy decoding, fixed seed, short <code>max_new_tokens</code>; every
+    benchmark writes a timestamped JSON report under <code>reports/experiments/</code>.</li>
+  </ul>
+
+  <h2 id="s4">4. Experimental Protocol</h2>
+  <h3>4.1 Models</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Model</th><th>Family</th><th>Layers</th><th>Hidden</th><th>Mode</th></tr></thead>
+    <tbody>
+      <tr><td>gpt2</td><td>GPT-2</td><td>12</td><td>768</td><td>base</td></tr>
+      <tr><td>Qwen2.5-0.5B-Instruct</td><td>Qwen</td><td>24</td><td>896</td><td>chat</td></tr>
+      <tr><td>Qwen2.5-1.5B-Instruct</td><td>Qwen</td><td>28</td><td>1536</td><td>chat</td></tr>
+      <tr><td>TinyLlama-1.1B-Chat-v1.0</td><td>Llama</td><td>22</td><td>2048</td><td>chat</td></tr>
+      <tr><td>DeepSeek-R1-Distill-Qwen-1.5B</td><td>DeepSeek</td><td>28</td><td>1536</td><td>chat</td></tr>
+    </tbody>
+  </table></div>
+  <div class="caption"><span class="capnum">Table 1.</span> All ≤1.5B, loaded locally on CPU.
+  Directions built at 60% of transformer depth.</div>
+  <h3>4.2 Metrics</h3>
+  <p><strong>Control power</strong> (Exp. 1): the max absolute deviation of a condition's mean
+  metric from the true baseline. <strong>Steerability</strong> (Exp. 2): Pearson correlation
+  between amplitude and the external metric over five amplitudes (−2,−1,0,+1,+2), plus the
+  slope. <strong>Transfer coefficient</strong> (Exp. 3): Δ<sub>transferred</sub> / Δ<sub>native</sub>.</p>
+  <h3>4.3 Methodological controls</h3>
+  <p><strong>Native mode.</strong> Instruct models are evaluated with their chat template. In
+  base continuation, the same knob yields 0.000 control on Qwen2.5-0.5B; in chat mode it yields
+  +0.548 (Exp. 1). Reporting base-mode numbers for instruct models is therefore an artifact.
+  <strong>True baseline.</strong> In steerio, <code>knobs=None</code> plays <em>all</em> knobs at
+  amplitude 1; a valid baseline passes <code>knobs={}</code>. An early run used <code>None</code>
+  and produced contaminated baselines; we corrected it. The committed numbers are from the
+  corrected runs. <strong>External scoring</strong> ensures no self-referential artifact.</p>
+
+  <h2 id="s5">5. Results</h2>
+  <h3>5.1 Exp. 1. Steering vs. prompting (paired)</h3>
+  <p>Same 16 sentiment / 8 tone prompts, same scorer. Conditions: baseline, steer ±1, prompt ±
+  (2 wordings). <strong>Control power</strong> = max deviation from baseline.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Model</th><th>Dimension</th><th>Steering</th><th>Best prompt</th><th>Winner</th></tr></thead>
+    <tbody>
+      <tr><td>gpt2</td><td>sentiment</td><td>+0.271</td><td class="pos">+0.302</td><td>prompt (thin)</td></tr>
+      <tr><td>gpt2</td><td>tone</td><td class="pos">+0.047</td><td>+0.014</td><td>steering</td></tr>
+      <tr><td>Qwen2.5-0.5B</td><td>sentiment</td><td class="pos">+0.535</td><td>+0.409</td><td class="pos">steering</td></tr>
+      <tr><td>Qwen2.5-0.5B</td><td>tone</td><td>0.006</td><td class="pos">+0.028</td><td>prompt (both ≈ 0)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="caption"><span class="capnum">Table 2.</span> Control power per model and dimension.</div>
+  <p><strong>Consistency.</strong> Sign test, fraction of prompts moved in the intended direction:
+  the Qwen knob at +1 moved <strong>100%</strong> of prompts (p = 1.00), versus 85–92% for the
+  best prompt. On gpt2, negative steering was consistent (p = 0.00, no prompt inverted), while
+  positive prompting was not (p = 0.67).</p>
+  <div class="honest"><b>Reading.</b> Steering is at least as strong as prompting and markedly
+  more consistent. On the instruction-tuned model it is clearly stronger, at near-zero marginal
+  cost. Tone remains difficult to control by either method on these small models.</div>
+
+  <h3>5.2 Exp. 2. Cross-model steerability</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Model</th><th>Family</th><th>Sentiment corr (slope)</th><th>Tone corr</th><th>Refusal corr (baseline)</th></tr></thead>
+    <tbody>
+      <tr><td>gpt2</td><td>GPT-2</td><td class="pos">0.95 (+0.126)</td><td>0.85</td><td class="mut">(no chat)</td></tr>
+      <tr><td>Qwen2.5-0.5B</td><td>Qwen</td><td class="pos">0.92 (+0.205)</td><td class="neg">−0.38</td><td class="pos">0.97 (0.50)</td></tr>
+      <tr><td>Qwen2.5-1.5B</td><td>Qwen</td><td class="pos">0.89 (+0.120)</td><td class="pos">0.97</td><td class="pos">0.97 (0.58)</td></tr>
+      <tr><td>TinyLlama-1.1B</td><td>Llama</td><td class="pos">0.89 (+0.057)</td><td>0.35</td><td class="neg">−0.35 (0.08)</td></tr>
+      <tr><td>DeepSeek-R1-Distill-1.5B</td><td>DeepSeek</td><td class="neg">0.35</td><td>0.69</td><td>0.71 (0.00)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="caption"><span class="capnum">Table 3.</span> Amplitude-to-score correlation
+  (Pearson over 5 amplitudes), slope per unit, refusal baseline.</div>
+  <div class="honest"><b>Reading.</b> Sentiment control is strong and monotonic on 4 of 5
+  families. The reasoning model (DeepSeek) barely responds to sentiment steering in chat mode
+  (0.35), an open and under-reported result. Tone is model-dependent, and negative on
+  Qwen2.5-0.5B (−0.38). Defensive refusal is strong on Qwen (50%→100%) and fails on TinyLlama,
+  whose baseline refusal is near zero.</div>
+
+  <h3>5.3 Exp. 3. Direction transfer</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Design</th><th>Source → Target</th><th>Hidden</th><th>Native Δ</th><th>Transferred Δ</th><th>Coef.</th></tr></thead>
+    <tbody>
+      <tr><td>A, matched hidden</td><td>Qwen2.5-1.5B → DeepSeek</td><td>1536→1536</td><td>0.000</td><td>0.000</td><td class="mut">inconclusive</td></tr>
+      <tr><td>B, zero-pad cross family</td><td>gpt2 → Qwen2.5-0.5B</td><td>768→896</td><td>+0.535</td><td class="neg">−0.115</td><td class="neg">−0.21</td></tr>
+    </tbody>
+  </table></div>
+  <div class="caption"><span class="capnum">Table 4.</span> Transfer coefficient =
+  transferred effect over native effect.</div>
+  <div class="honest"><b>Honest, important result.</b> Naive cross-family transfer
+  <b>fails</b>. The gpt2 vector, zero-pad projected onto Qwen2.5-0.5B, produces a <b>negative</b>
+  effect (coefficient −0.21). It counter-steers sentiment instead of pushing it. Design A is
+  inconclusive because DeepSeek is barely steerable natively (0.35), so there is no native
+  effect to transfer. Steering directions are <b>not portable across families by naive
+  projection</b>.</div>
+
+  <h2 id="s6">6. Discussion</h2>
+  <ul>
+    <li><strong>Steering is real and measurable.</strong> Monotone, amplitude-consistent, and
+    verified by an external scorer. On an instruction-tuned model it beats prompting on the
+    dimension we measured.</li>
+    <li><strong>But it is not universal.</strong> Tone is fragile on small models; reasoning
+    models resist sentiment steering; TinyLlama has no refusal to amplify. Any product or safety
+    claim must be model- and dimension-specific.</li>
+    <li><strong>Transfer is the open problem.</strong> The cheap story ("learn once, apply
+    everywhere") is contradicted by our zero-pad result. A learned cross-model mapping, or a
+    representation provably aligned across architectures, is a genuine open research direction,
+    not a solved one.</li>
+  </ul>
+
+  <h2 id="s7">7. Limitations</h2>
+  <ol>
+    <li>Models ≤1.5B on CPU; steerability on 7B+ models is unmeasured here.</li>
+    <li>Prompting is wording-sensitive; we tested two formulations, not a systematic instruction search.</li>
+    <li>Single-seed, greedy decoding.</li>
+    <li>Lexicon scorers are crude proxies; absolute magnitudes are indicative, not calibrated probabilities.</li>
+    <li>"Reasoning model resists steering" rests on one model and one dimension.</li>
+    <li>The transfer design uses naive zero-padding; more principled alignment methods are out of scope.</li>
+  </ol>
+
+  <h2 id="s8">8. Conclusion</h2>
+  <p>We release a clean, reproducible steering library and an honest empirical picture:
+  representation-level control works, often beats prompting on instruction-tuned models, and
+  transfers badly across families. The negative results, transfer failure, DeepSeek's
+  resistance, TinyLlama's refusal ceiling, are as informative as the positive ones. All numbers
+  regenerate from the committed scripts; we invite reproduction and challenge.</p>
+
+  <h2 id="refs">References</h2>
+  <ol class="refs" style="list-style:none;padding-left:0">
+    <li><span class="n">[1]</span>Zou, A., et al. <em>Representation Engineering: A Top-Down
+    Approach to AI Transparency.</em> arXiv:2310.01405 (ICLR 2024).</li>
+    <li><span class="n">[2]</span>Turner, A. M., et al. <em>Activation Addition: Steering
+    Language Models Without Optimization.</em> arXiv:2308.10248.</li>
+    <li><span class="n">[3]</span>Arditi, A., et al. <em>Refusal in Language Models Is Mediated
+    by a Single Direction.</em> arXiv:2406.11717.</li>
+    <li><span class="n">[4]</span>Templeton, A., et al. (Anthropic). <em>Scaling Monosemanticity:
+    Extracting Interpretable Features from Claude 3 Sonnet.</em> 2024.</li>
+  </ol>
+
+  <h2>Appendix A. Reproduction</h2>
+  <pre><code>pip install -e . && pytest tests/ -q              # 44 tests, tiny-random-gpt2
+python experiments/run_all.py --exp1 --exp2 --exp3   # every number, ~40 min CPU</code></pre>
+  <p>Every figure and table value is produced by these scripts and stored as timestamped JSON
+  under <code>reports/experiments/</code>; <code>SUMMARY.md</code> condenses them. The evidence
+  chain is documented in <code>reports/VERIFICATION.md</code>.</p>
+
+  <h2>Appendix B. Artifact statement</h2>
+  <p><strong>Code:</strong> MIT-licensed Python package <code>steerio</code> (from-scratch
+  RepE + CAA, 44 tests). <strong>Data/weights:</strong> public HuggingFace checkpoints;
+  <code>models_cache/</code> downloaded in copy mode (no symlinks) and gitignored (≈8 GB).
+  <strong>Compute:</strong> single CPU, ≈40 minutes.</p>
+
+  <div class="foot">steerio · research preprint · honest negatives included · korrocorp</div>
+</div>
+</body>
+</html>

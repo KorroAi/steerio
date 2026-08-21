@@ -20,6 +20,13 @@ cross model steerability, direction transfer.
 > contribution. Every number in the README is the real output of the scripts in
 > `experiments/`, regenerable command by command.
 
+## 📄 Read the research paper
+
+[**`paper/paper.md`**](paper/paper.md) has the full writeup: abstract, method, the three
+controlled experiments, the honest negative results, and reproduction steps.
+
+> A rendered HTML version: [`paper/paper.html`](paper/paper.html)
+
 ---
 
 ## 1. Why
